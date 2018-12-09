@@ -1,8 +1,13 @@
 Click==7.0
+dj-database-url==0.5.0
 Django==2.1.4
+django-heroku==0.3.1
 dlib==19.16.0
 face-recognition==1.2.3
 face-recognition-models==0.3.0
+gunicorn==19.9.0
 numpy==1.15.4
 Pillow==5.3.0
+psycopg2==2.7.6.1
 pytz==2018.7
+whitenoise==4.1.2
