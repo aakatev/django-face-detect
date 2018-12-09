@@ -1,3 +1,6 @@
+boost==0.1
+cmake==0.7.1
+boost-py
 Click==7.0
 dj-database-url==0.5.0
 Django==2.1.4
