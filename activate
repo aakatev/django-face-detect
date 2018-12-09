@@ -1,0 +1,2 @@
+ #!/bin/bash
+source ./MY_ENV/bin/activate

@@ -18,8 +18,3 @@ def index(request):
 
     image_data = open("./output.jpeg", "rb").read()
     return HttpResponse(image_data, content_type="image/jpeg")
-
-
-
-    # a = 'https://html.com/wp-content/uploads/flamingo.jpg'
-    # return HttpResponse('<img src=\"'+a+'\"></img>')

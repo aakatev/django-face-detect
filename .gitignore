@@ -1,0 +1,6 @@
+/MY_ENV
+/__pycache__
+/*/__pycache__
+/*/*/__pycache__
+db.sqlite3
+# /face_detect/development.py
