@@ -16,32 +16,59 @@ Django back end with Python Face Recongition API configuired for easy heroku dep
 ## Documentation
 
 
-### Example of usage
+### Simple example
 
-Here is a simple example of handling jpeg file:
-
+<code>views.py</code>
 ```python
-# views.py
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 def index(request):
-    import face_recognition
-    from PIL import Image, ImageDraw
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
 
-    in_image = face_recognition.load_image_file("./data.jpeg")
+        import face_recognition
+        from PIL import Image, ImageDraw
 
-    out_image = Image.fromarray(in_image)
-    draw = ImageDraw.Draw(out_image)
+        in_image = face_recognition.load_image_file(myfile)
 
-    face_locations = face_recognition.face_locations(in_image)
-    for (top, right, bottom, left) in face_locations:
-      draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+        out_image = Image.fromarray(in_image)
+        draw = ImageDraw.Draw(out_image)
 
-    out_image.save("./output.jpeg")
+        face_locations = face_recognition.face_locations(in_image)
+    
+        for (top, right, bottom, left) in face_locations:
+            draw.rectangle(((left, top), (right, bottom)), outline=(0, 0, 255))
+        out_image.save("./output.jpeg")
 
-    image_data = open("./output.jpeg", "rb").read()
+        image_data = open("./output.jpeg", "rb").read()
+        return HttpResponse(image_data, content_type="image/jpeg")
 
-    return HttpResponse(image_data, content_type="image/jpeg")
+    return render(request, 'src/html/image_upload.html')
+```
+
+<code>image_upload.html</code>
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple File Upload</title>
+  </head>
+  <body>
+    {% load static %}
+
+    {% block content %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="myfile">
+        <button type="submit">Upload</button>
+      </form>
+      
+    {% endblock %}
+  </body>
+</html>
 ```
 
 ### Developer Section
