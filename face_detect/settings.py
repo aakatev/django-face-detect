@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 # Development settings
-# from .development import *
+from .development import *
 
 # Deployment settings (heroku)
-from .deployment import *
+# from .deployment import *
